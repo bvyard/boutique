@@ -509,7 +509,7 @@
   <div class="cart-footer">
     <div class="cart-subtotal">
       <span class="cart-subtotal-label">Total</span>
-      <span class="cart-subtotal-amount" id="cartTotal">₱ 0</span>
+      <span class="cart-subtotal-amount" id="cartTotal">$ 0.00</span>
     </div>
     <button class="checkout-btn" id="checkoutBtn" onclick="openPayment()" disabled>Proceed to Checkout</button>
   </div>
@@ -530,7 +530,7 @@
         <div class="order-summary-divider"></div>
         <div class="order-summary-total">
           <span>Total</span>
-          <strong id="orderTotal">₱ 0</strong>
+          <strong id="orderTotal">$ 0.00</strong>
         </div>
       </div>
 
@@ -560,7 +560,7 @@
       <div class="payment-methods">
         <button class="payment-method active" onclick="selectPayment('gcash')">GCash</button>
         <button class="payment-method" onclick="selectPayment('bank')">Bank Transfer</button>
-        <button class="payment-method" onclick="selectPayment('cod')">Cash on Delivery</button>
+        <button class="payment-method" onclick="selectPayment('paypal')">PayPal</button>
       </div>
 
       <!-- GCash Details -->
@@ -591,12 +591,17 @@
         </div>
       </div>
 
-      <!-- COD Details -->
-      <div class="payment-details" id="pay-cod">
-        <div class="bank-info">
-          <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--white);margin-bottom:0.5rem;">Cash on Delivery</p>
-          <p>Please prepare the exact amount upon delivery. Our rider will contact you before arrival.</p>
-          <p style="margin-top:0.5rem;font-size:0.65rem;color:rgba(255,255,255,0.4);">Delivery time: 1–3 business days within Metro Manila. Provincial delivery may take longer.</p>
+      <!-- PayPal Details -->
+      <div class="payment-details" id="pay-paypal">
+        <div class="gcash-info" style="background:rgba(0,112,186,0.08);border-color:rgba(0,112,186,0.25);">
+          <p>Send payment to PayPal:</p>
+          <strong style="color:#009cde;">bvyard@paypal.com</strong>
+          <p style="margin-top:0.6rem;">Account Name: <strong style="color:var(--white);">Bvyard Boutique</strong></p>
+          <p style="margin-top:0.5rem;font-size:0.65rem;color:rgba(255,255,255,0.4);">Please send as "Friends & Family" or include the exact order total and send your payment confirmation.</p>
+        </div>
+        <div class="form-group">
+          <label>PayPal Transaction ID</label>
+          <input type="text" id="paypalRef" placeholder="e.g. 1AB23456CD789012E">
         </div>
       </div>
 
@@ -609,7 +614,7 @@
       <p class="success-title">Order Placed!</p>
       <p class="success-msg">Thank you for your purchase.<br>We will reach out to you shortly to confirm your order details.<br><br>
         <span style="color:var(--gold);">Bvyard Boutique</span><br>
-        For inquiries: <a href="mailto:bvyard@email.com" style="color:var(--gold-light);">bvyard@email.com</a>
+        For inquiries: <a href="/cdn-cgi/l/email-protection#1a786c637b687e5a7f777b737634797577" style="color:var(--gold-light);"><span class="__cf_email__" data-cfemail="1577636c746771557078747c793b767a78">[email&#160;protected]</span></a>
       </p>
       <button class="submit-order-btn" style="margin-top:2rem;max-width:260px;" onclick="finishOrder()">Continue Shopping</button>
     </div>
@@ -662,12 +667,12 @@
       <div onclick="showPage('bags')" style="cursor:pointer;background:var(--mid);padding:3rem;text-align:center;transition:background 0.3s;" onmouseover="this.style.background='#2f2f2f'" onmouseout="this.style.background='var(--mid)'">
         <div style="font-size:2.5rem;margin-bottom:1rem;">👜</div>
         <p style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--gold);margin-bottom:0.5rem;">Bags</p>
-        <p style="font-size:0.65rem;letter-spacing:0.2em;color:var(--text-muted);text-transform:uppercase;">Balenciaga · Bottega Veneta · Cartier · Chanel · GUCCI · HERMES · Louis Vuitton · Prada</p>
+        <p style="font-size:0.65rem;letter-spacing:0.2em;color:var(--text-muted);text-transform:uppercase;">Balenciaga · Bottega Veneta · Chanel · GUCCI · HERMES · Louis Vuitton · Prada</p>
       </div>
       <div onclick="showPage('watches')" style="cursor:pointer;background:var(--mid);padding:3rem;text-align:center;transition:background 0.3s;" onmouseover="this.style.background='#2f2f2f'" onmouseout="this.style.background='var(--mid)'">
         <div style="font-size:2.5rem;margin-bottom:1rem;">⌚</div>
         <p style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--gold);margin-bottom:0.5rem;">Watches</p>
-        <p style="font-size:0.65rem;letter-spacing:0.2em;color:var(--text-muted);text-transform:uppercase;">Patek Philippe · Richard Mille · ROLEX</p>
+        <p style="font-size:0.65rem;letter-spacing:0.2em;color:var(--text-muted);text-transform:uppercase;">Patek Philippe · Richard Mille · ROLEX · Cartier</p>
       </div>
       <div onclick="showPage('shoes')" style="cursor:pointer;background:var(--mid);padding:3rem;text-align:center;transition:background 0.3s;" onmouseover="this.style.background='#2f2f2f'" onmouseout="this.style.background='var(--mid)'">
         <div style="font-size:2.5rem;margin-bottom:1rem;">👡</div>
@@ -701,7 +706,6 @@
   <div class="brand-tabs" id="bags-tabs">
     <button class="brand-tab active" onclick="showBrand('bags','balenciaga')">Balenciaga</button>
     <button class="brand-tab" onclick="showBrand('bags','bottega')">Bottega Veneta</button>
-    <button class="brand-tab" onclick="showBrand('bags','cartier')">Cartier</button>
     <button class="brand-tab" onclick="showBrand('bags','chanel')">Chanel</button>
     <button class="brand-tab" onclick="showBrand('bags','gucci')">GUCCI</button>
     <button class="brand-tab" onclick="showBrand('bags','hermes')">HERMES</button>
@@ -719,12 +723,6 @@
   <div class="brand-content" id="bags-bottega">
     <div class="brand-header"><p class="brand-name-large">Bottega Veneta</p><div class="brand-line"></div></div>
     <div class="product-grid" id="grid-bottega"></div>
-  </div>
-
-  <!-- Cartier -->
-  <div class="brand-content" id="bags-cartier">
-    <div class="brand-header"><p class="brand-name-large">Cartier</p><div class="brand-line"></div></div>
-    <div class="product-grid" id="grid-cartier"></div>
   </div>
 
   <!-- Chanel -->
@@ -774,6 +772,7 @@
     <button class="brand-tab active" onclick="showBrand('watches','patek')">Patek Philippe</button>
     <button class="brand-tab" onclick="showBrand('watches','richard')">Richard Mille</button>
     <button class="brand-tab" onclick="showBrand('watches','rolex')">ROLEX</button>
+    <button class="brand-tab" onclick="showBrand('watches','cartier')">Cartier</button>
   </div>
 
   <!-- Patek Philippe -->
@@ -792,6 +791,12 @@
   <div class="brand-content" id="watches-rolex">
     <div class="brand-header"><p class="brand-name-large">ROLEX</p><div class="brand-line"></div></div>
     <div class="product-grid" id="grid-rolex"></div>
+  </div>
+
+  <!-- Cartier -->
+  <div class="brand-content" id="watches-cartier">
+    <div class="brand-header"><p class="brand-name-large">Cartier</p><div class="brand-line"></div></div>
+    <div class="product-grid" id="grid-cartier"></div>
   </div>
 
   <div id="footer-watches"></div>
@@ -837,7 +842,7 @@
     <div class="footer-contact">
       <p class="footer-heading">Contact Us</p>
       <p>For inquiries and appointments,<br>reach us anytime.</p>
-      <p><a href="mailto:bvyard@email.com">bvyard@email.com</a></p>
+      <p><a href="/cdn-cgi/l/email-protection#0765717e66756347626a666e6b2964686a"><span class="__cf_email__" data-cfemail="e280949b839086a2878f838b8ecc818d8f">[email&#160;protected]</span></a></p>
       <p><a href="tel:0917xxxxxxx">0917-xxxxxxx</a></p>
     </div>
   </footer>
@@ -847,7 +852,7 @@
   </div>
 </template>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ════════════════════════════════════════
 // PRODUCT DATA — image paths match folder names
 // ════════════════════════════════════════
@@ -855,53 +860,53 @@ const PRODUCTS = {
   // BAGS
   balenciaga: {
     brand: 'Balenciaga', folder: 'Balenciaga', prefix: 'Balenciaga_',
-    count: 13, price: 85000
+    count: 13, price: 750
   },
   bottega: {
     brand: 'Bottega Veneta', folder: 'Bottega Veneta', prefix: 'Bottega Veneta_',
-    count: 37, price: 120000
+    count: 37, price: 1050
   },
   cartier: {
     brand: 'Cartier', folder: 'Cartier', prefix: 'Cartier_',
-    count: 24, price: 95000
+    count: 24, price: 830
   },
   chanel: {
     brand: 'Chanel', folder: 'Chanel', prefix: 'Chanel_',
-    count: 11, price: 150000
+    count: 11, price: 1310
   },
   gucci: {
     brand: 'GUCCI', folder: 'GUCCI', prefix: 'GUCCI_',
-    count: 13, price: 75000
+    count: 13, price: 655
   },
   hermes: {
     brand: 'HERMES', folder: 'HERMES', prefix: 'HERMES_',
-    count: 68, price: 200000
+    count: 68, price: 1750
   },
   lv: {
     brand: 'Louis Vuitton', folder: 'Louis Vuitton', prefix: 'Louis Vuitton_',
-    count: 60, price: 110000
+    count: 60, price: 960
   },
   prada: {
     brand: 'Prada', folder: 'Prada', prefix: 'Prada_',
-    count: 16, price: 90000
+    count: 16, price: 790
   },
   // WATCHES
   patek: {
     brand: 'Patek Philippe', folder: 'Patek Philippe', prefix: 'Patek Philippe_',
-    count: 18, price: 500000
+    count: 18, price: 4375
   },
   richard: {
     brand: 'Richard Mille', folder: 'Richard Mille', prefix: 'Richard Mille_',
-    count: 9, price: 1200000
+    count: 9, price: 10500
   },
   rolex: {
     brand: 'ROLEX', folder: 'ROLEX', prefix: 'ROLEX _',
-    count: 52, price: 350000
+    count: 52, price: 3060
   },
   // SANDALS
   sandals: {
     brand: 'Sandals', folder: 'sandals', prefix: 'sandals_',
-    count: 13, price: 15000
+    count: 13, price: 130
   }
 };
 
@@ -922,7 +927,7 @@ function makePlaceholder(label) {
 }
 
 function formatPrice(p) {
-  return '₱ ' + p.toLocaleString('en-PH');
+  return '$ ' + p.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 }
 
 function buildProductCard(key, num) {
@@ -1159,16 +1164,4 @@ function showPage(name) {
 
 function showBrand(page, brand) {
   document.querySelectorAll('#page-' + page + ' .brand-content').forEach(c => c.classList.remove('active'));
-  document.querySelectorAll('#page-' + page + ' .brand-tab').forEach(t => t.classList.remove('active'));
-  const content = document.getElementById(page + '-' + brand);
-  if (content) content.classList.add('active');
-  event.target.classList.add('active');
-}
-
-// Close modal on overlay click
-document.getElementById('paymentModal').addEventListener('click', function(e) {
-  if (e.target === this) closePayment();
-});
-</script>
-</body>
-</html>
+  document.querySelectorAll('#page-' + page + ' .brand-tab').forEach(t => t.
